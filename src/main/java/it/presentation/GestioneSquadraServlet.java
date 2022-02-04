@@ -31,4 +31,10 @@ public class GestioneSquadraServlet extends HttpServlet {
 		
 		ServletActionsFactory.getIstance().create(action).esegui(request, response, calcettoServ);
 	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getPathInfo();
+		
+		ServletActionsFactory.getIstance().create(action).esegui(request, response, calcettoServ);
+	}
 }

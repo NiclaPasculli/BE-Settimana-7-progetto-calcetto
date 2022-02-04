@@ -2,6 +2,8 @@ package it.dao;
 
 import java.util.List;
 
+import org.apache.commons.cli.MissingArgumentException;
+
 import it.entity.Calciatore;
 import it.entity.Squadra;
 import jakarta.persistence.EntityManager;
@@ -34,6 +36,14 @@ public class CalciatoreDao implements ICalciatoreDao {
 		if ( c == null)
 			throw new EntityNotFoundException("Non è stato trovato il calciatore con id" + id);
 		return c ;
+	}
+	@Override
+	public Calciatore getByPrimaryKey(String id) throws MissingArgumentException {
+		if(id == null || id.isBlank()) {
+			throw new MissingArgumentException("Id Calciatore mancante!");
+		}
+		
+		return getByPrimaryKey(Integer.parseInt(id)) ;
 	}
 
 	@Override

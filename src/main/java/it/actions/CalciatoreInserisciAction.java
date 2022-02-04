@@ -10,20 +10,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class CalciatoreInserisciAction implements IServletActions {
 	public void esegui(HttpServletRequest request, HttpServletResponse response, GestioneSquadraEjb gse) throws ServletException, IOException {
-		 Calciatore c = new Calciatore();
-		 String nomeC = "Pino"; 
-		 String cognomeC ="Insegno";
+		
+		 String nomeC = request.getParameter("nome"); 
+		 String cognomeC = request.getParameter("cognome");
+		 
 		 if(!capitalCheck(nomeC) || !capitalCheck(cognomeC)) {
 			 response.getWriter().append("Metti la maiuscola come prima lettera del nome e cognome");
 			 return;
 		 }
 		
-		 String ruolo ="Bomber";
-		 c.setNome(nomeC);
-		 c.setCognome(cognomeC);
-		 c.setRuolo(ruolo);
-		gse.getCalciatoreDao().inserisci(c);
-		 System.out.println("Hai aggiunto calciatore" + c.getNome()+ " " + c.getCognome());
+		 String ruolo = request.getParameter("ruolo");
+		
+		gse.inserisciCalciatore(nomeC, cognomeC, ruolo);
+		 System.out.println("Hai aggiunto calciatore" + nomeC+ " " + cognomeC);
+		 new CalciatoriMostraTuttiAction().esegui(request, response, gse);
 	}
 	
 	private boolean capitalCheck(String nomeC) {

@@ -25,10 +25,20 @@ public class ServletActionsFactory {
 		case "/calciatore/aggiungisquadra":
 			return new CalciatoreAggiungiSquadraAction();
 		
-		case "/calciatore/elimina":
-			break;
+		case "/calciatore/delete":
+			return new CalciatoreDeleteAction();
 		case "/calciatore/aggiorna":
-			break;
+			return new CalciatoreAggiornaAction();
+		
+		case "/calciatore/mostratutti":
+			return new CalciatoriMostraTuttiAction();
+		
+		case "/calciatore/edit":
+			return new CalciatoreEditAction();
+		
+		case "/calciatore/add":
+			return new CalciatoreAddAction();
+			
 		case "/squadra/inserisci":
 			break;
 		case "/squadra/aggiungicalciatore":
